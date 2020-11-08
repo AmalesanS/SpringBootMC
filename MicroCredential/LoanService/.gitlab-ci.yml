@@ -1,0 +1,28 @@
+image: java:8-jdk
+stages:
+ - test
+ - build
+services:
+ - 'mysql:latest'
+variables:
+ MYSQL_CI_URL: jdbc:mysql://mysql:3306/LoanDB
+ MYSQL_DATABASE: LoanDB
+ MYSQL_USER: app_root
+ MYSQL_PASSWORD: root
+ MYSQL_ROOT_PASSWORD: root
+ MYSQL_ROOT_HOST: 127.0.0.1
+cache:
+ paths:
+  - .m2/repository
+  - target
+maven-test:
+ image: maven:3-jdk-8
+ stage: test
+ script: "mvn test -B"
+maven-build:
+ image: maven:3-jdk-8
+ stage: build
+ script: "mvn package -U"
+ artifacts:
+  paths:
+   - target/*.jar

@@ -1,0 +1,4 @@
+com\cts\loan\LoanServiceApplicationTests.class
+com\cts\loan\service\LoanServiceImplTest.class
+com\cts\loan\repositories\LoanRepositoryTest.class
+com\cts\loan\controller\LoanControllerTest.class
